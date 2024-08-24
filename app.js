@@ -6,10 +6,7 @@ import userrouter from './router/user.router.js';
 import cors from 'cors';
 import fileupload from 'express-fileupload';
 import followrouter from './router/follow.router.js';
-
-
-
-
+import postlike from './router/postlike.router.js';
 
 const app=express();
 
@@ -27,6 +24,8 @@ app.use(cors());
 app.use("/user",userrouter);
 app.use("/post",postrouter);
 app.use("/follow",followrouter);
+app.use("/postlike",postlike);
+
 
 
 

@@ -33,9 +33,7 @@ export const findfollowdata = async (req,res,next)=>{
     if (finddata) {
         return res.status(200).json({msg:"data find success fully",ans:finddata})
     }
-    
-       return res.status(200).json({ans:"not found"})
-
+       return res.status(404).json({ans:"not found"})
     } catch (error) {
         return res.status(500).json(error)
     }
