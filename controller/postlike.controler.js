@@ -46,7 +46,29 @@ export const find= async(req,res,next)=>{
         if (like) {
             return res.status(200).json({msg:"find succesfully",ans:like})
         }
+        return res.status(404).json({msg:"not found error"})
     } catch (error) {
         return res.status(500).json({error:"internal server error",error})
     }
 }
+
+
+export const likecount= async(req,res,next)=>{
+    let {postid}=req.body;
+    try {
+        let like=await postlike.count({
+            where:{
+                postid 
+            }          
+        })
+        if (like) {
+            return res.status(200).json({msg:"total likes",ans:like})
+        }
+        return res.status(404).json({msg:"no like"})
+    } catch (error) {
+        return res.status(500).json({error:"internal server error",error})
+    }
+}
+
+
+

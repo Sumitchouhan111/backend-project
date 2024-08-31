@@ -4,7 +4,7 @@ import post from "./post.model.js";
 import User from "./user.model.js";
 import follow from "./follow.model.js";
 import postlike from "./postlike.model.js";
-
+import notification from "./notification.js";
 
 
 User.hasMany(post, { foreignKey: "id" });
@@ -21,6 +21,11 @@ postlike.belongsTo(post,{foreignKey:"postid"})
 User.hasMany(postlike,{foreignKey:"id"})
 postlike.belongsTo(User,{foreignKey:"id"})
 
-export { User, post,follow,postlike };
+
+User.hasMany(notification,{foreignKey:"id"});
+notification.belongsTo(User,{foreignKey:"id"});
+
+
+export {User, post,follow,postlike,notification};
 
 

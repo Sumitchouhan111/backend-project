@@ -1,11 +1,11 @@
 import express from "express";
-import { apllylike, deletlike, find } from "../controller/postlike.controler.js";
-
+import { apllylike, deletlike, find, likecount } from "../controller/postlike.controler.js";
+import { verifytoken } from "../midleware/auth.js";
 
 let router = express.Router();
 
-router.post("/likepost",apllylike);
-router.delete("/delete",deletlike);
-router.post("/finduserpostlike",find);
-
+router.post("/likepost",verifytoken,apllylike);
+router.delete("/delete",verifytoken,deletlike);
+router.post("/finduserpostlike",verifytoken,find);
+router.post("/likescount",verifytoken,likecount)
 export default router;

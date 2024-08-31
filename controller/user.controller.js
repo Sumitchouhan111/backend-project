@@ -1,6 +1,7 @@
 
 import User from "../model/user.model.js";
 import { Op } from "sequelize";
+import jwt from "jsonwebtoken";
 
 import { Result } from "express-validator";
 // import { raw } from "body-parser";
@@ -20,11 +21,16 @@ export const created = async (req,res,next)=>{
         password,
         bio:"add your bio"
     
-       })
+       }
+     
+       
+    )
+    const payload = req.body.email;
+    const token = jwt.sign(payload,"adfflasdfjjao");
           console.log(ans);
        if (ans) 
         console.log(ans);
-        return res.status(200).json({user:"user created successfull"})
+        return res.status(200).json({user:"user created successfull",token})
 
     } catch (error) {
         console.log(error);
@@ -63,8 +69,12 @@ export const login = async (req,res,next)=>{
             console.log(isMatch,'sfsdfasf');
             if (isMatch) {
                 console.log(1212);
+                const payload = {id:ans.id,email:ans.email};
+                console.log(payload);
                 
-                return res.status(200).json(ans)
+                const token = jwt.sign(payload,"adfflasdfjjao");
+                
+                return res.status(200).json({ans,token})
             }
 
             return res.status(401).json({msg:"your paswoord is wrong"})
