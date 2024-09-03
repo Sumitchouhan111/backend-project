@@ -8,15 +8,12 @@ import fileupload from 'express-fileupload';
 import followrouter from './router/follow.router.js';
 import postlike from './router/postlike.router.js';
 import notification from './router/notification.router.js';
-import http from 'http';
-import { Server } from "socket.io";
-import { notificationsoket } from './soket/notification.js';
+import allpost from './router/allpost.router.js';
 
 
 
 const app=express();
-let server = http.createServer(app);        
-let io =new Server(server);
+
 
 
 
@@ -37,8 +34,7 @@ app.use("/post",postrouter);
 app.use("/follow",followrouter);
 app.use("/postlike",postlike);
 app.use("/notification",notification)
-
-notificationsoket(io);
+app.use("/allpost",allpost)
 
 app.listen(4000,()=>{
     console.log("server started successfull ");

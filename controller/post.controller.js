@@ -148,3 +148,16 @@ export const  singlepostdata = async(req,res,next)=>{
         return res.status(500).json({error:"internal server error"})
     }
 }
+
+export const postalluser =async(req,res,next)=>{
+    try {
+        let data = await post.findAll({
+            attributes:["imgvideo",'postid']
+        }
+);
+
+      return res.status(200).json({data})
+    } catch (error) {
+        return res.status(500).json({error:"internal server error"})
+    }
+}

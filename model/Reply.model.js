@@ -1,39 +1,38 @@
-import  { DataTypes } from "sequelize";
 import sequelize from "../db/db.config.js";
+import { DataTypes } from "sequelize";
 
-const Comments=sequelize.define('comments',{
-    commnetid:{
+export const Reply = sequelize.define('Reply',{
+    Replyid:{
         type:DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true,
         allowNull:false
     },
-    postId:{
+    rcid:{
         type:DataTypes.INTEGER,
         references:{
-            model:"posts",
-            key:"postid"
+            model:"comments",
+            key:'commnetid'
         },
         allowNull:false
     },
-    userId:{
+    ruid:{
         type:DataTypes.INTEGER,
         references:{
             model:"users",
-            key:"id"
-        }
-    },
-    commentText:{
-        type:DataTypes.STRING,
+            key:'id'
+        },
         allowNull:false
     },
-
+    replytext:{
+        type:DataTypes.STRING,
+        allowNull:false
+    
+    }
 })
 
-Comments.sync().then(res=>{
-    console.log("Comments table created");
+Reply.sync().then(res=>{
+    console.log("reply table created");
 }).catch(err=>{
-    console.log("error in comments table commnets table not created "); 
+    console.log("error in reply table ");  
 })
-
-export default Comments;
