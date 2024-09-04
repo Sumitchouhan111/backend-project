@@ -21,7 +21,8 @@ const Comments=sequelize.define('comments',{
         references:{
             model:"users",
             key:"id"
-        }
+        },
+        allowNull:false
     },
     commentText:{
         type:DataTypes.STRING,

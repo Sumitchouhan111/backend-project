@@ -8,7 +8,7 @@ import notification from "./notification.js";
 import Comments from "./comment.model.js";
 import { commnetslike } from "./commentlike.js";
 import { Reply } from "./Reply.model.js";
-
+import { replylike } from "./Replylike.js";
 
 
 User.hasMany(post, { foreignKey: "id" });
@@ -32,11 +32,11 @@ notification.belongsTo(User,{foreignKey:"id"});
 post.hasMany(Comments,{foreignKey:"postid"})
 Comments.belongsTo(post,{foreignKey:"postid"})
 
-User.hasMany(Comments,{foreignKey:"id"})
-Comments.belongsTo(User,{foreignKey:"id"})
+User.hasMany(Comments,{foreignKey:"userId"})
+Comments.belongsTo(User,{foreignKey:"userId"})
 
-User.hasMany(commnetslike,{foreignKey:"id"})
-commnetslike.belongsTo(User,{foreignKey:"id"})
+User.hasMany(commnetslike,{foreignKey:"id", as:'commets'})
+commnetslike.belongsTo(User,{foreignKey:"id",as:"user"})
 
 Comments.hasMany(commnetslike,{foreignKey:"commnetid"});
 commnetslike.belongsTo(Comments,{foreignKey:"commnetid"})
@@ -47,6 +47,9 @@ Reply.belongsTo(Comments,{foreignKey:"commnetid"})
 User.hasMany(Reply,{foreignKey:"id"})
 Reply.belongsTo(User,{foreignKey:"id"})
 
-export {User, post,follow,postlike,notification,Comments,commnetslike,Reply};
+User.hasMany(replylike,{foreignKey:'id'})
+replylike.belongsTo(User,{foreignKey:"id"})
+
+export {User, post,follow,postlike,notification,Comments,commnetslike,Reply,replylike};
 
 

@@ -9,6 +9,24 @@ export const replylike = sequelize.define('replylike',{
         allowNull:false
     },
     replayid:{
-        
+        type:DataTypes.INTEGER,
+        references:{
+            model:'replies',
+            key:"Replyid"
+        }
+    },
+    rluid:{
+        type:DataTypes.INTEGER,
+        references:{
+            model:"users",
+            key:"id"
+        }
     }
+})
+
+replylike.sync().then(res=>{
+    console.log("reply like created ");
+}).catch(err=>{
+    console.log("error in reply like ");
+    
 })
