@@ -10,5 +10,5 @@ postrouter.delete("/delete",verifytoken,delet);
 postrouter.post("/findpost",verifytoken,findpost);
 postrouter.post("/findsinglepost",verifytoken,singlepostdata)
 postrouter.get("/postalluser",postalluser)
-
+// postrouter.delete("/deletepost",deletepost)
 export default postrouter;

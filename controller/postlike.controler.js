@@ -1,3 +1,4 @@
+import post from "../model/post.model.js";
 import postlike from "../model/postlike.model.js";
 
 export const apllylike= async(req,res,next)=>{
@@ -70,5 +71,45 @@ export const likecount= async(req,res,next)=>{
     }
 }
 
+// export let currentuserpostlikescheck =async(req,res,next)=>{
 
 
+//     try {
+        
+//     } catch (error) {
+        
+//     }
+// }
+
+
+export  let likehistry = async (req,res,next)=>{
+    let {userid}=req.body;
+    try {
+        let data= await postlike.findAll({
+            where:{
+                userid
+            },
+            attributes:['postid'],
+            raw :true
+        })
+
+        console.log(data);
+
+        let array = data.map(data  => data.postid)
+        
+        let postdata = await post.findAll({
+            where:{
+                postid:array
+            },
+            attributes:['imgvideo','postid'],
+            order:[['postid','DESC']]
+        })
+        
+        return res.status(201).json({msg:'data find success full ', postdata})
+        
+    } catch (error) {
+        console.log(error);
+        
+        return res.status(500).json({error,e:"error in likehistry"})
+    }
+}

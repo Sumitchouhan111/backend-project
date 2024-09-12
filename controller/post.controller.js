@@ -1,8 +1,9 @@
 
 // import { where } from "sequelize";
 import  post from "../model/post.model.js";
-
-
+// import postlike from "../model/postlike.model.js";
+// import Comments from "../model/comment.model.js";
+// import { commnetslike } from "../model/commentlike.js";
 
 
 
@@ -104,6 +105,8 @@ export const  findpost = async(req,res,next)=>{
             return res.status(201).json({ans,msg:"data find succefull"})
         }
         else{
+            console.log(556765);
+            
             return res.status(401).json({error:"bad request"})
         }
 
@@ -161,3 +164,18 @@ export const postalluser =async(req,res,next)=>{
         return res.status(500).json({error:"internal server error"})
     }
 }
+
+// export let deletepost = async (req,res,next)=>{
+//     let {postid}=req.body;
+//     try {
+//         let delet = post.destroy({
+//             where:{
+//                 postid
+//             }
+//         })
+
+//         return res.status(201).json({msg:"post delete success full"})
+//     } catch (error) {
+//         return res.status(500).json({error:"enternal server error"})
+//     }
+// }

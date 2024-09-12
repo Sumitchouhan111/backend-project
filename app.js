@@ -34,6 +34,7 @@ app.use("/follow",followrouter);
 app.use("/postlike",postlike);
 app.use("/notification",notification)
 app.use("/allpost",allpost)
+
 app.use("/comments",commentrouter)
 
 

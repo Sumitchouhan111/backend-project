@@ -35,11 +35,11 @@ Comments.belongsTo(post,{foreignKey:"postid"})
 User.hasMany(Comments,{foreignKey:"userId"})
 Comments.belongsTo(User,{foreignKey:"userId"})
 
-User.hasMany(commnetslike,{foreignKey:"id", as:'commets'})
-commnetslike.belongsTo(User,{foreignKey:"id",as:"user"})
+User.hasMany(commnetslike,{foreignKey:"uid"})
+commnetslike.belongsTo(User,{foreignKey:"uid"})
 
-Comments.hasMany(commnetslike,{foreignKey:"commnetid"});
-commnetslike.belongsTo(Comments,{foreignKey:"commnetid"})
+Comments.hasMany(commnetslike,{foreignKey:"cid"});
+commnetslike.belongsTo(Comments,{foreignKey:"cid"})
 
 Comments.hasMany(Reply,{foreignKey:"commnetid"})
 Reply.belongsTo(Comments,{foreignKey:"commnetid"})
